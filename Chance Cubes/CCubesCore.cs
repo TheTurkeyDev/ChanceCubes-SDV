@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
-using StardewModdingAPI.Events;
-using StardewValley;
-using System;
+using Chance_Cubes.Reward;
 
 namespace Chance_Cubes
 {
@@ -12,9 +10,12 @@ namespace Chance_Cubes
         private Texture2D giantRingTexture;
         public override void Entry(IModHelper helper)
         {
-            this.Monitor.Log("Chance Cubes has loaded!");
+            RewardRegistry.initRewards();
+
             this.giantRingTexture = this.Helper.Content.Load<Texture2D>("assets/chance_cube.png");
             ChanceCube.texture = this.giantRingTexture;
+
+            this.Monitor.Log("Chance Cubes has loaded!");
         }
     }
 }
