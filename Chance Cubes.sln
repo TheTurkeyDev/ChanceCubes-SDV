@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chance Cubes", "Chance Cubes\Chance Cubes.csproj", "{CE9524EE-2BF3-418D-AD44-40FA624BFC4A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE9524EE-2BF3-418D-AD44-40FA624BFC4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE9524EE-2BF3-418D-AD44-40FA624BFC4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE9524EE-2BF3-418D-AD44-40FA624BFC4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE9524EE-2BF3-418D-AD44-40FA624BFC4A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21245300-7A2B-4A47-9A14-2CF620ED5355}
+	EndGlobalSection
+EndGlobal
