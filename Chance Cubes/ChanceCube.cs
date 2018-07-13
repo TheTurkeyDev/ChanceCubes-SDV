@@ -20,7 +20,6 @@ namespace Chance_Cubes
         {
             this.name = "Chance Cube";
             this.type = "interactive";
-
             this.boundingBox = new Rectangle((int)this.tileLocation.X * Game1.tileSize, (int)this.tileLocation.Y * Game1.tileSize, Game1.tileSize, Game1.tileSize);
         }
 
@@ -44,10 +43,24 @@ namespace Chance_Cubes
             return true;
         }
 
-        //
-        public override void performRemoveAction(Vector2 tileLocation, GameLocation environment)
+        public override bool performObjectDropInAction(StardewValley.Object dropIn, bool probe, StardewValley.Farmer who)
         {
-            RewardRegistry.triggerRandomReward(tileLocation, Game1.player);
+ 
+            return false;
+        }
+
+        //Called when the object is placed in the world
+        public override bool performDropDownAction(StardewValley.Farmer who)
+        {
+            return false;
+        }
+
+        //
+        public override bool performToolAction(Tool t)
+        {
+            Game1.playSound("woodWhack");
+            RewardRegistry.triggerRandomReward(this.tileLocation, Game1.player);
+            return true;
         }
 
         //Draws the Item in the menu
@@ -63,7 +76,7 @@ namespace Chance_Cubes
                 SpriteEffects.None, // No effects needed 
                 layerDepth); // IDK
         }
-        
+
         // Draws the item above the players head when they hold it
         public override void drawWhenHeld(SpriteBatch spriteBatch, Vector2 objectPosition, StardewValley.Farmer f)
         {
@@ -78,18 +91,23 @@ namespace Chance_Cubes
                 Math.Max(0.0f, (float)(f.getStandingY() + 2) / 10000f)); // IDK again
         }
 
-        // I Think this is called when the object is being drawn in the world
+        // Called when drawing the object to be placed in the world
         public override void draw(SpriteBatch spriteBatch, int x, int y, float alpha = 1f)
         {
             spriteBatch.Draw(texture, // Texture / Sheet of textures to use
-                Game1.GlobalToLocal(Game1.viewport, new Vector2((float)(x * Game1.tileSize), (float)(y * Game1.tileSize - (Game1.pixelZoom - this.boundingBox.Height)))), // Position to draw the texture on the screen. The location needs to be converted from World coordinates to screen cordinates
+                Game1.GlobalToLocal(Game1.viewport, new Vector2((float)(x * Game1.tileSize), (float)(y * Game1.tileSize))), // Position to draw the texture on the screen. The location needs to be converted from World coordinates to screen cordinates
                 new Rectangle?(Game1.getSourceRectForStandardTileSheet(texture, 0, 64, 64)), // Same as above
                 Color.White * alpha, // Same as above
                 0.0f, // Still same
                 Vector2.Zero, // Not sure why this one is zero and the menu one above isn't
-                (float)Game1.pixelZoom,
+                (float)Game1.pixelZoom / 4f,
                 SpriteEffects.None, // No effects needed
                 (float)(this.boundingBox.Bottom - 8) / 10000f); // Still don't know
+        }
+
+        public override Item getOne()
+        {
+            return (Item)new ChanceCube();
         }
     }
 }

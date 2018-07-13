@@ -14,7 +14,8 @@ namespace Chance_Cubes.Reward
 
         public static void initRewards()
         {
-            rewards.Add(new BasicReward("Test 1", 0, new IType[]{ new ItemType(new ItemPart[]{ new ItemPart(1, 1)})}));
+            rewards.Add(new BasicReward("Test 1", 0, new IType[] { new ItemType(new ItemPart[] { new ItemPart(2, 1) }) }));
+            rewards.Add(new BasicReward("Test 2", 0, new IType[] { new ItemType(new ItemPart[] { new ItemPart(64, 1) }) }));
         }
 
         public static void triggerRandomReward(Vector2 pos, StardewValley.Farmer farmer)
