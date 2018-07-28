@@ -3,17 +3,14 @@ namespace Chance_Cubes.Reward.Parts
 {
     class ItemPart
     {
-        private int itemID;
-        private int stackSize;
-
         public ItemPart(int id, int stackSize)
         {
-            this.itemID = id;
-            this.stackSize = stackSize;
+            ItemID = id;
+            StackSize = stackSize;
         }
 
-        public int ItemID { get; }
+        public int ItemID { get; private set; }
 
-        public int StackSize { get; }
+        public int StackSize { get; private set; }
     }
 }

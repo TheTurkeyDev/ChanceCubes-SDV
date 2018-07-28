@@ -1,7 +1,6 @@
 ﻿using Chance_Cubes.Reward.Parts;
 using Microsoft.Xna.Framework;
 using StardewValley;
-using StardewValley.Monsters;
 using System;
 
 namespace Chance_Cubes.Reward.Types
@@ -16,7 +15,11 @@ namespace Chance_Cubes.Reward.Types
 
         protected override void Trigger(NPCPart part, Vector2 pos, StardewValley.Farmer farmer)
         {
-
+            NPC toSpawn = (NPC)Activator.CreateInstance(part.NPCType, part.getAdjustedArgs(part, pos, farmer));
+            toSpawn.position = pos;
+            toSpawn.setTilePosition((int)pos.X, (int)pos.Y);
+            toSpawn.currentLocation = Game1.player.currentLocation;
+            Game1.currentLocation.characters.Add(toSpawn);
         }
     }
 }

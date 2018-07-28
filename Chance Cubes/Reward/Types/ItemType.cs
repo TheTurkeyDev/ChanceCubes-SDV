@@ -15,7 +15,7 @@ namespace Chance_Cubes.Reward.Types
         protected override void Trigger(ItemPart part, Vector2 pos, StardewValley.Farmer farmer)
         {
             Vector2 debrisOrigin = new Vector2((float)(pos.X * Game1.tileSize + Game1.tileSize), (float)(pos.Y * Game1.tileSize + Game1.tileSize));
-            Game1.createItemDebris((Item)new Object(part.ItemID, part.StackSize, false, -1, 0), debrisOrigin, -1, farmer.currentLocation);
+            Game1.createItemDebris((Item)new Object(part.ItemID, part.StackSize), debrisOrigin, -1, farmer.currentLocation);
         }
     }
 }

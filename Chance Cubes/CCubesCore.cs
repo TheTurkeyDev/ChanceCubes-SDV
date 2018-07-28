@@ -31,6 +31,7 @@ namespace Chance_Cubes
 
             logger.Info("Chance Cubes has loaded!");
 
+            //Game1.objectInformation.Add(49494, "Chance Cube");
         }
 
         private void MenuChanged(object sender, EventArgsClickableMenuChanged e)
