@@ -16,7 +16,7 @@ namespace Chance_Cubes.Reward.Types
         protected override void Trigger(NPCPart part, Vector2 pos, StardewValley.Farmer farmer)
         {
             NPC toSpawn = (NPC)Activator.CreateInstance(part.NPCType, part.getAdjustedArgs(part, pos, farmer));
-            toSpawn.position = pos;
+            toSpawn.Position = pos;
             toSpawn.setTilePosition((int)pos.X, (int)pos.Y);
             toSpawn.currentLocation = Game1.player.currentLocation;
             Game1.currentLocation.characters.Add(toSpawn);

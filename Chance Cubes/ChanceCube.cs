@@ -19,16 +19,16 @@ namespace Chance_Cubes
         public ChanceCube()
         {
             this.name = "Chance Cube";
-            this.type = "interactive";
-            this.boundingBox = new Rectangle((int)this.tileLocation.X * Game1.tileSize, (int)this.tileLocation.Y * Game1.tileSize, Game1.tileSize, Game1.tileSize);
+            this.Type = "interactive";
+            this.boundingBox.Set(new Rectangle((int)tileLocation.X * Game1.tileSize, (int)tileLocation.Y * Game1.tileSize, Game1.tileSize, Game1.tileSize));
         }
 
         public ChanceCube(Vector2 tileLocation)
         {
             this.name = "Chance Cube";
-            this.type = "interactive";
-            this.tileLocation = tileLocation;
-            this.boundingBox = new Rectangle((int)this.tileLocation.X * Game1.tileSize, (int)this.tileLocation.Y * Game1.tileSize, Game1.tileSize, Game1.tileSize);
+            this.Type = "interactive";
+            this.TileLocation = tileLocation;
+            this.boundingBox.Set(new Rectangle((int)tileLocation.X * Game1.tileSize, (int)tileLocation.Y * Game1.tileSize, Game1.tileSize, Game1.tileSize));
         }
 
         // Tool tip info
@@ -43,7 +43,7 @@ namespace Chance_Cubes
             return true;
         }
 
-        public override bool performObjectDropInAction(StardewValley.Object dropIn, bool probe, StardewValley.Farmer who)
+        public override bool performObjectDropInAction(Item dropIn, bool probe, StardewValley.Farmer who)
         {
  
             return false;
@@ -56,15 +56,15 @@ namespace Chance_Cubes
         }
 
         //
-        public override bool performToolAction(Tool t)
+        public override bool performToolAction(Tool t, GameLocation location)
         {
             Game1.playSound("woodWhack");
-            RewardRegistry.triggerRandomReward(this.tileLocation, Game1.player);
+            RewardRegistry.triggerRandomReward(tileLocation, Game1.player);
             return true;
         }
 
         //Draws the Item in the menu
-        public override void drawInMenu(SpriteBatch spriteBatch, Vector2 location, float scaleSize, float transparency, float layerDepth, bool drawStackNumber)
+        public override void drawInMenu(SpriteBatch spriteBatch, Vector2 location, float scaleSize, float transparency, float layerDepth, bool drawStackNumber, Color color, bool drawShadow)
         {
             spriteBatch.Draw(texture, // The texture to use. Most items use the game larger texture sheet
                 location + new Vector2(Game1.tileSize / 2, Game1.tileSize / 2) * scaleSize, // Location on the screen to render at
@@ -90,6 +90,7 @@ namespace Chance_Cubes
                 SpriteEffects.None, // No effects needed
                 Math.Max(0.0f, (float)(f.getStandingY() + 2) / 10000f)); // IDK again
         }
+
 
         // Called when drawing the object to be placed in the world
         public override void draw(SpriteBatch spriteBatch, int x, int y, float alpha = 1f)

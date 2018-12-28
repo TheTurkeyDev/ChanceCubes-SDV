@@ -27,27 +27,27 @@ namespace Chance_Cubes
 
             logger = new Log(this);
 
-            MenuEvents.MenuChanged += this.MenuChanged;
+            Helper.Events.Display.MenuChanged += this.MenuChanged;
 
             logger.Info("Chance Cubes has loaded!");
 
-            //Game1.objectInformation.Add(49494, "Chance Cube");
+            //Game1.objectInformation.Add(System.Linq.Enumerable.Last(Game1.objectInformation).Key + 1, "Chance Cube/150/-1/Basic/Chance Cube/Want to play a game?");
         }
 
-        private void MenuChanged(object sender, EventArgsClickableMenuChanged e)
+        private void MenuChanged(object sender, MenuChangedEventArgs e)
         {
             if (Game1.activeClickableMenu is ShopMenu)
             {
                 var shop = (ShopMenu)Game1.activeClickableMenu;
-                if (shop.portraitPerson != null && shop.portraitPerson.name == "Pierre") // && Game1.dayOfMonth % 7 == )
+                if (shop.portraitPerson != null && shop.portraitPerson.Name == "Pierre") // && Game1.dayOfMonth % 7 == )
                 {
                     var items =
                         this.Helper.Reflection.GetField<Dictionary<Item, int[]>>(shop, "itemPriceAndStock").GetValue();
                     var selling = this.Helper.Reflection.GetField<List<Item>>(shop, "forSale").GetValue();
 
-                    var ring = new ChanceCube();
-                    items.Add(ring, new[] { 150, int.MaxValue });
-                    selling.Add(ring);
+                    var cube = new ChanceCube();
+                    items.Add(cube, new[] { 150, int.MaxValue });
+                    selling.Add(cube);
                 }
             }
         }
