@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,16 +48,20 @@
     <Compile Include="CCubesConfig.cs" />
     <Compile Include="CCubesCore.cs" />
     <Compile Include="ChanceCube.cs" />
+    <Compile Include="config\CustomRewardsLoader.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reward\BasicReward.cs" />
     <Compile Include="Reward\IReward.cs" />
+    <Compile Include="Reward\Parts\IPart.cs" />
     <Compile Include="Reward\Parts\ItemPart.cs" />
+    <Compile Include="Reward\Parts\MessagePart.cs" />
     <Compile Include="Reward\Parts\NPCPart.cs" />
     <Compile Include="Reward\RewardRegistry.cs" />
     <Compile Include="Reward\Types\ItemType.cs" />
     <Compile Include="Reward\Types\BaseType.cs" />
     <Compile Include="Reward\Types\IType.cs" />
+    <Compile Include="Reward\Types\MessageType.cs" />
     <Compile Include="Reward\Types\NPCType.cs" />
   </ItemGroup>
   <ItemGroup>

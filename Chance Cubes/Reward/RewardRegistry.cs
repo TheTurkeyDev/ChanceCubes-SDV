@@ -16,10 +16,16 @@ namespace Chance_Cubes.Reward
 
         public static void initRewards()
         {
-            rewards.Add(new BasicReward("Test 1", 0, new IType[] { new ItemType(new ItemPart[] { new ItemPart(2, 1) }) }));
-            rewards.Add(new BasicReward("Test 2", 0, new IType[] { new ItemType(new ItemPart[] { new ItemPart(64, 1) }) }));
-            rewards.Add(new BasicReward("Test 3", 0, new IType[] { new NPCType(new NPCPart[] { new NPCPart(typeof(GreenSlime), new object[] { Vector2.Zero }) }) }));
+            //rewards.Add(new BasicReward("Test 1", 0, new IType[] { new ItemType(new ItemPart[] { new ItemPart(2, 1) }) }));
+            //rewards.Add(new BasicReward("Test 2", 0, new IType[] { new ItemType(new ItemPart[] { new ItemPart(64, 1) }) }));
+            //rewards.Add(new BasicReward("Test 3", 0, new IType[] { new NPCType(new NPCPart[] { new NPCPart(typeof(GreenSlime), new object[] { Vector2.Zero }) }) }));
             //rewards.Add(new BasicReward("Test 4", 0, new IType[] { new NPCType(new NPCPart[] { new NPCPart(typeof(Child), new object[] { "Mira", false, false, "%farmer%"}) }) }));
+            rewards.Add(new BasicReward("Test 5", 0, new IType[] { new MessageType(new MessagePart[] { new MessagePart("Hello!", Color.Blue) }) }));
+        }
+
+        public static void registerReward(IReward reward)
+        {
+            rewards.Add(reward);
         }
 
         public static void triggerRandomReward(Vector2 pos, StardewValley.Farmer farmer)

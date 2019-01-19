@@ -3,10 +3,10 @@ using Microsoft.Xna.Framework;
 
 namespace Chance_Cubes.Reward.Parts
 {
-    class NPCPart
+    class NPCPart : IPart
     {
-        private Type npcType;
         private object[] args;
+        private int delay;
 
         public NPCPart(Type npcType)
         {
@@ -22,14 +22,22 @@ namespace Chance_Cubes.Reward.Parts
 
         public Type NPCType
         {
-            get => npcType;
-            set => npcType = value;
+            get;
+            set;
+        }
+
+        public int Delay { get; }
+
+        public NPCPart SetDelay(int delay)
+        {
+            this.delay = delay;
+            return this;
         }
 
         public object[] Args
         {
-            get => args;
-            set => args = value;
+            get;
+            set;
         }
 
         public object[] getAdjustedArgs(NPCPart part, Vector2 pos, StardewValley.Farmer farmer)

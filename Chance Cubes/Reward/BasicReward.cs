@@ -33,5 +33,10 @@ namespace Chance_Cubes.Reward
         {
             return name;
         }
+
+        public int getNumRewards()
+        {
+            return rewards.Length;
+        }
     }
 }

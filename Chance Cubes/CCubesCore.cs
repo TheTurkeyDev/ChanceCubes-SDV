@@ -2,10 +2,10 @@
 using StardewModdingAPI;
 using Chance_Cubes.Reward;
 using StardewModdingAPI.Events;
-using System;
 using StardewValley;
 using StardewValley.Menus;
 using System.Collections.Generic;
+using Chance_Cubes.config;
 
 namespace Chance_Cubes
 {
@@ -28,6 +28,8 @@ namespace Chance_Cubes
             logger = new Log(this);
 
             Helper.Events.Display.MenuChanged += this.MenuChanged;
+
+            CustomRewardsLoader.LoadCustomRewards(helper.Data, helper.DirectoryPath);
 
             logger.Info("Chance Cubes has loaded!");
 
