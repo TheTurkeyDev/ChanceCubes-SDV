@@ -22,21 +22,21 @@ namespace Chance_Cubes.config
 
                 foreach (string reward in values.Keys)
                 {
-                    BasicReward basicReward = parseReward(reward, (Dictionary<string, object>)values[reward]);
-                    if (basicReward == null)
-                    {
-                        CCubesCore.logger.Info("Seems your reward is setup incorrectly, or is disabled for this version of minecraft with a depedency, and Chance Cubes was not able to parse the reward " + reward.getKey() + " for the file " + f.getName());
-                        continue;
-                    }
+                    /* BasicReward basicReward = parseReward(reward, (Dictionary<string, object>)values[reward]);
+                     if (basicReward == null)
+                     {
+                         CCubesCore.logger.Info("Seems your reward is setup incorrectly, or is disabled for this version of minecraft with a depedency, and Chance Cubes was not able to parse the reward " + reward.getKey() + " for the file " + f.getName());
+                         continue;
+                     }
 
-                    RewardRegistry.registerReward(basicReward);
+                     RewardRegistry.registerReward(basicReward);*/
 
                 }
                 CCubesCore.logger.Info("Loaded custom rewards file " + fileName);
             }
         }
 
-        public static BasicReward parseReward(string rewardName, Dictionary<string, object> reward)
+        /*public static BasicReward parseReward(string rewardName, Dictionary<string, object> reward)
         {
             List<IType> rewards = new List<IType>();
             int chance = 0;
@@ -118,6 +118,6 @@ namespace Chance_Cubes.config
                 }
             }
             return new CustomEntry<BasicReward, Boolean>(new BasicReward(rewardName, chance, rewards.toArray(new IRewardType[rewards.size()])), isGiantCubeReward);
-        }
+        }*/
     }
 }

@@ -8,63 +8,74 @@ using System.Collections.Generic;
 
 namespace Chance_Cubes
 {
-    class ChanceCube : StardewValley.Object
+    class ChanceCube : StardewValley.Object, ISalable
     {
+        public const int ID = 900;
+        public const string NAME = "Chance Cube";
+        public const int PRICE = 150;
+        public const int EDIBILITY = -300;
+        public const string TYPE = "Crafting";
+        public const int CATEGORY = CraftingCategory;
+        public const string DESCRIPTION = "Want to play a game?";
+
         //The texture of the Chance Cube
         public static Texture2D texture;
 
         /*  I'm not totally positive which constructors are needed and which aren't 
             since I don't have the item placed in the world yet. Only in the players inventory
         */
-        public ChanceCube()
+        public ChanceCube(Vector2 tileLocation) : base(tileLocation, ID, false)
         {
-            this.name = "Chance Cube";
-            this.Type = "interactive";
+            this.name = Name;
+            this.Name = Name;
+            this.DisplayName = Name;
+            this.displayName = Name;
+            this.Price = PRICE;
+            this.ParentSheetIndex = ID;
+            this.CanBeSetDown = true;
+            this.CanBeGrabbed = true; // ?
             this.boundingBox.Set(new Rectangle((int)tileLocation.X * Game1.tileSize, (int)tileLocation.Y * Game1.tileSize, Game1.tileSize, Game1.tileSize));
+            CCubesCore.logger.Info("Work?!");
         }
 
-        public ChanceCube(Vector2 tileLocation)
-        {
-            this.name = "Chance Cube";
-            this.Type = "interactive";
-            this.TileLocation = tileLocation;
-            this.boundingBox.Set(new Rectangle((int)tileLocation.X * Game1.tileSize, (int)tileLocation.Y * Game1.tileSize, Game1.tileSize, Game1.tileSize));
-        }
-
-        // Tool tip info
         public override string getDescription()
         {
-            return "What's in the cube?";
+            return DESCRIPTION;
         }
 
-        // Whether or not the object can be placed in the world
-        public override bool isPlaceable()
-        {
-            return true;
-        }
 
-        public override bool performObjectDropInAction(Item dropIn, bool probe, StardewValley.Farmer who)
+        public override bool performObjectDropInAction(Item dropIn, bool probe, Farmer who)
         {
- 
+            CCubesCore.logger.Info("Maybe!");
             return false;
         }
 
         //Called when the object is placed in the world
-        public override bool performDropDownAction(StardewValley.Farmer who)
+        public override bool performDropDownAction(Farmer who)
         {
+            CCubesCore.logger.Info("Yes!");
             return false;
         }
 
         //
         public override bool performToolAction(Tool t, GameLocation location)
         {
+            CCubesCore.logger.Info("Hi!");
             Game1.playSound("woodWhack");
             RewardRegistry.triggerRandomReward(tileLocation, Game1.player);
             return true;
         }
 
+        public override bool checkForAction(Farmer who, bool justCheckingForActivity = false)
+        {
+            if (justCheckingForActivity)
+                return true;
+            CCubesCore.logger.Info("HELLO!");
+            return true;
+        }
+
         //Draws the Item in the menu
-        public override void drawInMenu(SpriteBatch spriteBatch, Vector2 location, float scaleSize, float transparency, float layerDepth, bool drawStackNumber, Color color, bool drawShadow)
+        public override void drawInMenu(SpriteBatch spriteBatch, Vector2 location, float scaleSize, float transparency, float layerDepth, StackDrawType drawStackNumber, Color color, bool drawShadow)
         {
             spriteBatch.Draw(texture, // The texture to use. Most items use the game larger texture sheet
                 location + new Vector2(Game1.tileSize / 2, Game1.tileSize / 2) * scaleSize, // Location on the screen to render at
@@ -108,7 +119,8 @@ namespace Chance_Cubes
 
         public override Item getOne()
         {
-            return (Item)new ChanceCube();
+            CCubesCore.logger.Info("One!");
+            return new ChanceCube(tileLocation);
         }
     }
 }

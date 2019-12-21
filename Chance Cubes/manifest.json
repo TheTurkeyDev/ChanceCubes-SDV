@@ -5,6 +5,6 @@
    "Description": "Chance Cubes! But in Stardew Valley!",
    "UniqueID": "turkey2349.chancecubes",
    "EntryDll": "Chance Cubes.dll",
-   "MinimumApiVersion": "2.0",
-   "UpdateKeys": []
+   "MinimumApiVersion": "2.10.0",
+   "UpdateKeys": ["CurseForge:297899"]
 }

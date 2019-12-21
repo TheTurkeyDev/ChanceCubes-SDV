@@ -22,18 +22,18 @@ namespace Chance_Cubes
             /*  Gets the texture that we will use for the Chance Cube. It feels weird to do it here, 
                 but this is how the example i was following did it.
             */
-            this.chanceCubeTexture = this.Helper.Content.Load<Texture2D>("assets/chance_cube.png");
+            chanceCubeTexture = this.Helper.Content.Load<Texture2D>("assets/chance_cube.png");
             ChanceCube.texture = this.chanceCubeTexture;
 
             logger = new Log(this);
 
-            Helper.Events.Display.MenuChanged += this.MenuChanged;
+            InitEvents(helper.Events);
+
+            helper.Content.AssetEditors.Add(new CCubesInjector());
 
             CustomRewardsLoader.LoadCustomRewards(helper.Data, helper.DirectoryPath);
 
-            logger.Info("Chance Cubes has loaded!");
-
-            //Game1.objectInformation.Add(System.Linq.Enumerable.Last(Game1.objectInformation).Key + 1, "Chance Cube/150/-1/Basic/Chance Cube/Want to play a game?");
+            logger.Info("Death and destruction prepared! (And Cookies. Cookies were also prepared.)");
         }
 
         private void MenuChanged(object sender, MenuChangedEventArgs e)
@@ -43,15 +43,16 @@ namespace Chance_Cubes
                 var shop = (ShopMenu)Game1.activeClickableMenu;
                 if (shop.portraitPerson != null && shop.portraitPerson.Name == "Pierre") // && Game1.dayOfMonth % 7 == )
                 {
-                    var items =
-                        this.Helper.Reflection.GetField<Dictionary<Item, int[]>>(shop, "itemPriceAndStock").GetValue();
-                    var selling = this.Helper.Reflection.GetField<List<Item>>(shop, "forSale").GetValue();
-
-                    var cube = new ChanceCube();
-                    items.Add(cube, new[] { 150, int.MaxValue });
-                    selling.Add(cube);
+                    var cube = new ChanceCube(Game1.currentCursorTile);
+                    shop.itemPriceAndStock.Add(cube, new[] { 150, int.MaxValue });
+                    shop.forSale.Add(cube);
                 }
             }
+        }
+
+        private void InitEvents(IModEvents events)
+        {
+            events.Display.MenuChanged += this.MenuChanged;
         }
     }
 }
